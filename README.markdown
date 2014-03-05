@@ -2,6 +2,10 @@
 
 activerecord-import is a library for bulk inserting data using ActiveRecord.
 
+### Things to note:
+
+* activerecord-import doesn't update counter caches on its own. You will need to provide values for the counter cache or update them on your own.
+
 ### Rails 4.0
 
 Use activerecord-import 0.4.0 or higher.
