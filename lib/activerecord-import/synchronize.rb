@@ -40,11 +40,12 @@ module ActiveRecord # :nodoc:
         end
 
         if matched_instance
+          # See source at ActiveRecord::Persistence::reload
           instance.clear_aggregation_cache
           instance.clear_association_cache
-          instance.instance_variable_set '@attributes', matched_instance.attributes
+          instance.instance_variable_set '@attributes', matched_instance.instance_variable_get('@attributes')
           instance.instance_variable_set '@attributes_cache', {}
-          instance.changed_attributes.clear
+          instance.clear_changes_information
           # Since the instance now accurately reflects the record in
           # the database, ensure that instance.persisted? is true.
           instance.instance_variable_set '@new_record', false
